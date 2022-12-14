@@ -25,7 +25,7 @@ memcache = {}
 
 app = Flask(__name__, static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/awss?charset=utf8mb4'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:alaaalaa123@database-1.c0f18vf5tcv0.us-east-1.rds.amazonaws.com/awss?charset=utf8mb4'
 db = SQLAlchemy(app)
 sess = Session()
 
@@ -53,7 +53,7 @@ class MemcacheConfig(db.Model):
 
 # Clear memcache_config table
 with app.app_context():
-    my_conn = pymysql.connect(host='localhost', user='root', password='', db='awss')
+    my_conn = pymysql.connect(host='database-1.c0f18vf5tcv0.us-east-1.rds.amazonaws.com', user='admin', password='alaaalaa123', db='awss')
 
     my_conn.cursor().execute("DROP table IF EXISTS memcache_config")
     db.create_all()
@@ -96,14 +96,14 @@ def allowed_file(filename):
 
 
 def get_db_connection():
-    conn = pymysql.connect(host='localhost', user='root', password='', db='awss')
+    conn = pymysql.connect(host='database-1.c0f18vf5tcv0.us-east-1.rds.amazonaws.com', user='admin', password='alaaalaa123', db='awss')
 
     conn.row_factory = sqlite3.Row
     return conn
 
 
 def get_mem_db_connection():
-    conn = pymysql.connect(host='localhost', user='root', password='', db='awss')
+    conn = pymysql.connect(host='database-1.c0f18vf5tcv0.us-east-1.rds.amazonaws.com', user='admin', password='alaaalaa123', db='awss')
 
     conn.row_factory = sqlite3.Row
     return conn
